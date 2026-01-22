@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Вопрос Ярику</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: Arial, sans-serif;
+    }.card {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+button {
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#yesBtn {
+  background: #4CAF50;
+  color: white;
+  font-size: 20px;
+  padding: 15px 30px;
+}
+
+#noBtn {
+  background: #f44336;
+  color: white;
+  font-size: 18px;
+  padding: 12px 24px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 id="question">Ты любишь меня?</h1>
+    <div class="buttons">
+      <button id="yesBtn">Да ❤️</button>
+      <button id="noBtn">Я подумаю…</button>
+    </div>
+  </div>  <script>
+    const noTexts = [
+      "Ты уверена?",
+      "Подумай ещё раз 💭",
+      "А если хорошо подумать?",
+      "Мне будет грустно",
+      "Последний шанс… ",
+      "Ну пожааалуйста ❤️"
+    ];
+
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+
+    let clickCount = 0;
+    let yesScale = 1;
+
+    noBtn.addEventListener("click", () => {
+      clickCount++;
+
+      // меняем текст кнопки
+      const textIndex = Math.min(clickCount - 1, noTexts.length - 1);
+      noBtn.textContent = noTexts[textIndex];
+
+      // увеличиваем кнопку "Да"
+      yesScale += 0.2;
+      yesBtn.style.transform = `scale(${yesScale})`;
+    });
+
+    yesBtn.addEventListener("click", () => {
+      document.querySelector(".card").innerHTML = `
+        <h1>Я так и знала! ❤️</h1>
+        <p style="font-size:20px;">Ты сделала меня самым счастливым</p>
+      `;
+    });
+  </script></body>
+</html>
